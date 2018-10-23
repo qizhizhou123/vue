@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        span{
+            width:200px;
+            height:50px;
+            font-size:25px;
+            display: block;
+            border:10px solid #ccc;
+            border-radius:50px;
+            margin-bottom:50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        div.ff{
+            text-align: center;
+            border:10px solid #ccc;
+            border-radius: 50%;
+            width:200px;
+            height:200px;
+            line-height: 200px;
+            background:-webkit-linear-gradient(right top,red,blue,green);
+            box-shadow:5px 5px 5px 5px red;
+        }
+        .ss{
+            width:100px;
+            height:100px;
+            border:10px solid #ccc;
+            background:blue;
+            padding:20px;
+            margin-top:50px;
+            box-sizing:border-box;
+        }
+        /* 选择器的权重：id 100，类名（class） 10，标签选择器 1 */
+        /* ie盒子的padding和border是往里边撑的，而标准的盒子模型是往外边撑的，设置这两个属性会加大盒子的宽和高 */
+        /* 数组是引用类型的，x=y=z，其中一个添加或删除元素时其余两个都会随它所变 如果其中有一个数组的元素改变了，那么这个组的元素和其余两个都不相同 */
+    </style>
+</head>
+<body>
+        <span>石家职业技术学院</span>
+        <span>前端培优班</span>
+        <div class="ff">石家庄</div>
+        <div class="ss"></div>
+        <script type="text/javascript">
+            var str='';
+            //空字符串或者字符串只有空格，number返回值都是0
+            console.log(Number(str));
+            //parseInt  只要第一个字符为非数字，那么得到的结果就是NaN，如果第一个是数字，那么接着查找，当查找到非数字的时候则结束。
+            console.log(parseInt(str));//NaN(not a number) null none
+            function sum(aa,b,c){
+                console.log(arguments);//实参集合，实际参数的集合
+                var sum=0;
+                for(var i=0;i<arguments.length;i++){
+                    console.log(arguments[i]);
+                    sum+=arguments[i];
+                }
+            return sum;
+            }
+            var q=sum(500,900,500);
+            console.log(q);
+            //    ||的意思是或者，两者满足其一   &&的意思是并且，必须的意思；两者必须都满足
+            //布尔类型中，有5个是false，其他的全是true
+            //0 NaN '' null undefined  这五个返回值为false
+            var a=1||2;  //1为true  ||为或者的意思，两者满足其一，所以后边的不用看，a=1;
+            var b=1&&2;  //1为true  &&为并且的意思，所以继续后边看，2也为true，所以b=2;
+            console.log(a,b);
+            //对于&&来说，前边成立给后边，前边不成立给前边
+            //对于||来说，前边成立给前边，前边不成立给后边
+            console.log(![]==false);
+            //!代表取反，先把要把取反的数据类型转换成布尔类型，然后再取反
+            //！！代表取反后再取反，这个操作的效果等同于  Boolean()转化
+            //==  相对比较   会把两边的数据类型转为同一种在比较
+            console.log('0'==0);//两边都转为数字，在进行比较
+            console.log([]==false);//先把引用数据类型转换成字符串；在把字符串转成数字，在进行比较
+            //===  绝对比较，先看两边是不是同一个数据类型，如果不是直接转换为false；如果是则再去查看比较值是否相等。
+            //  '0'!=1  相对不等；  '0'!==1  绝对不等
+            
+            
+            //JS中的数据类型分为两大类：
+            //基本数据类型（值类型）   string  number boolean  null   undefined
+            //基本数据类型操作的都是一个值；
+
+            //引用数据类型   [] {}  function  Data   Math   正则......
+            //引用数据类型操作的都是一个地址
+            var name='黎明',age=18;
+            //es6字符串模板
+            var str =`我的名字是${name},我的年龄是${age}`
+            console.log(str);
+            console.log(NaN==NaN);//NaN和NaN永远不相等  NaN也属于number类型
+            isNaN(1/'a');//判断参数是否是NaN  若是则返回true；不是则返回false
+            null==undefined   //true
+            null===undefined  //false
+            typeof(1);//查看数据类型  返回结果是字符串类型
+            var str2='123\'sdf'   //若想用单引号包含单引号，我们需要用\把字符串中的单引号转义
+            //对象中获取属性值的两种方式：一种是  打点；另一种是  []，中括号的这种方式一般适用于属性值是通过变量获取的情况
+            var arry=[4,5,4,6,7];
+            var n=arry.push(6,5);//给数组的末尾添加项
+            //返回值n是改变后的数组长度
+            console.log(n,arry);
+            var item=arry.pop();//返回值item是删除数组的最后一项
+            console.log(item,arry);
+            var n=arry.unshift(100,55,88);//往数组的首位增加
+            console.log(n,arry);
+            arry.shift();//删除首位项
+            var shuzu=[55,88,7,456,1,58651,5223,55];
+            var shuzu3=shuzu.sort(function(a,b){//   sort返回结果是排好序之后的数组
+                return a-b;
+                //返回值a-b  就是一个升序
+                //返回b-a   就是一个降序
+            })
+            console.log(shuzu3===shuzu);
+            shuzu.reverse();
+            var shu=[10,20,30,40];
+            shuzu.forEach(function(item,index){//item  是循环的数组的每一项  
+                //用来循环数组                    index  是循环的每一项的索引
+                
+            })
+            var ary2=shu.filter(function(item,index){
+                return false;
+            })
+            console.log(ary2);
+            console.log(shuzu);
+            console.log(shu==ary2);
+            function ss(){
+                return 8;//return 有两个作用：一个是打断函数的执行；另一个是返回结果给外界，不写return时默认返回。
+            }
+            var f=ss();
+            console.log(f);
+        </script>
+</body>
+</html>
